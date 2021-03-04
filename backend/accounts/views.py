@@ -3,16 +3,17 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.contrib.auth import authenticate, login, logout
 
 
-class ExampleView(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+class LoginView(APIView):
+    def post(self, request, format=None):
+        pass
 
-    def get(self, request, format=None):
-        content = {
-            # `django.contrib.auth.User` instance.
-            'user': request.user,
-            'auth': request.auth,  # None
-        }
-        return Response(content)
+class LogoutView(APIView):
+    def post(self, request, format=None):
+        pass
+
+class RegistrationView(APIView):
+    def post(self, request, format=None):
+        pass

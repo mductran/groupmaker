@@ -6,24 +6,28 @@ from django.utils import timezone
 # Create your models here.
 
 
-class CustomUser(User):
+class Users(User):
+    # TODO: add user profile pic
+    class Meta:
+        db_table = "User"
+
     def generate_friendcode(self):
         char_list = [str(i) for i in range(10)]
         return get_random_string(10, allowed_chars=char_list)
 
-        friendcode = models.CharField(
-            max_length=10, default=self.generate_friendcode)
-        score = models.IntegerField(default=100)
+    friendcode = models.CharField(
+        max_length=10, default=generate_friendcode)
+    score = models.IntegerField(default=100)
 
 
-class Review(models.Model):
+class Reviews(models.Model):
     class Meta:
         db_table = "Review"
 
-    reviewer = models.ForeignKey(
-        CustomUser, on_delete=models.CASCADE, related_name="reviewer")
-    reviewee = models.ForeignKey(
-        CustomUser, on_delete=models.CASCADE, related_name="reviewee")
-    review_text = models.CharField(max_length=255)
-    review_score = models.IntegerField(default=0)
-    review_time = models.DateTimeField(default=timezone.now)
+    sender = models.ForeignKey(
+        Users, on_delete=models.CASCADE, related_name="reviewer")
+    receiver = models.ForeignKey(
+        Users, on_delete=models.CASCADE, related_name="reviewee")
+    review = models.CharField(max_length=255)
+    score = models.IntegerField(default=0)
+    date = models.DateTimeField(default=timezone.now)
