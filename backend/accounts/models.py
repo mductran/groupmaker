@@ -17,17 +17,4 @@ class Users(User):
 
     friendcode = models.CharField(
         max_length=10, default=generate_friendcode)
-    score = models.IntegerField(default=100)
-
-
-class Reviews(models.Model):
-    class Meta:
-        db_table = "Review"
-
-    sender = models.ForeignKey(
-        Users, on_delete=models.CASCADE, related_name="reviewer")
-    receiver = models.ForeignKey(
-        Users, on_delete=models.CASCADE, related_name="reviewee")
-    review = models.CharField(max_length=255)
-    score = models.IntegerField(default=0)
-    date = models.DateTimeField(default=timezone.now)
+    rating = models.FloatField(default=0.0)
