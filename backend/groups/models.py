@@ -25,3 +25,11 @@ class Members(models.Model):
     group = models.ForeignKey(Groups, on_delete=models.CASCADE)
     role = models.CharField(
         max_length=3, choices=UserRoleChoices.choices, default=UserRoleChoices.member)
+
+
+class TaskList(models.Model):
+    class Meta:
+        db_table = "TaskList"
+
+    group = models.ForeignKey('groups.Groups', on_delete=models.CASCADE)
+    task = models.ForeignKey('tasks.Tasks', on_delete=models.CASCADE)
