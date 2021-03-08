@@ -21,7 +21,7 @@ class Members(models.Model):
         member = 'MEM', _('Member')
         leader = 'LEA', _('Leader')
 
-    member = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
+    member = models.ForeignKey('accounts.Users', on_delete=models.CASCADE)
     group = models.ForeignKey(Groups, on_delete=models.CASCADE)
     role = models.CharField(
         max_length=3, choices=UserRoleChoices.choices, default=UserRoleChoices.member)

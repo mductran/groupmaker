@@ -1,10 +1,10 @@
 from rest_framework.serializers import ModelSerializer
-from .models import CustomUser, Review
+from .models import Users, Review
 
 
 class UserSerializer(ModelSerializer):
     class Meta:
-        model = CustomUser
+        model = Users
 
     def create(self, validated_data):
         user = super().create(validated_data)
